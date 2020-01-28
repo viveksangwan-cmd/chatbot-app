@@ -37,13 +37,12 @@ while True:
 
     group_name=conn.recv(1000)
     group_password=conn.recv(1000)
+    print(group_name,group_password)
     usr_name=conn.recv(1000)
-    print(group_name,group_password,usr_name)
+    print(usr_name)
     validate(group_name,group_password)
 
     online_users.append(usr_name)
-
-    usr_name = conn.recv(20)
 
     clients[usr_name.decode()] = conn
     t = Thread(target=clients_task, args=(usr_name.decode(), conn, addr))

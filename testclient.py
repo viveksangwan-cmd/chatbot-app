@@ -7,12 +7,14 @@ port_number = 8000
 cs.connect(("localhost", port_number))
 
 group_name=input("Enter Group name : ")
-group_password=input("Enter Password : ")
-usr_name = input("Username :")
-
 cs.sendall(group_name.encode())
+
+group_password=input("Enter Password : ")
 cs.sendall(group_password.encode())
+
+usr_name = input("Username :")
 cs.sendall(usr_name.encode())
+
 
 def receive_data():
     while True:

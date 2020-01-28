@@ -15,12 +15,14 @@ print("Server is waiting for client.")
 def validate(group_name,group_password):
     if group_name in list(grp_name_and_pass.keys()):
         if grp_name_and_pass[group_name]==group_password:
-            print((" "*40)+group_name+(" "*40))
+            print((" "*40)+str(group_name)+(" "*40))
             for i in online_users:
                 print(i,end="  ")
-            print((" "*40)+sys.timestrap()+(" "*40))
         else:
             print("Wrong password")
+    else:
+        grp_name_and_pass[group_name]=group_password
+        print("Successful creation of group : " +str(group_name)+" : "+str(grp_name_and_pass[group_name] ))
 
 
 def clients_task(client_name, conn, addr):
@@ -30,6 +32,7 @@ def clients_task(client_name, conn, addr):
         for client in clients:
             if client != client_name:
                 clients[client].sendall(message.encode())
+
 
 while True:
     conn, addr = ss.accept()

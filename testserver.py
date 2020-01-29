@@ -1,4 +1,5 @@
 import socket
+import time
 from threading import Thread
 clients_groups={}
 clients = {}
@@ -18,13 +19,17 @@ def validate(group_name,group_password):
             print((" "*40)+str(group_name)+(" "*40))
             for i in online_users:
                 print(i,end="  ")
+            return True
         else:
-            print("Wrong password")
+            wrong_password="Wrong Password"
+            conn.sendall((wrong_password.encode()))
+            time.sleep(3)
             conn.close()
+            return False
     else:
         grp_name_and_pass[group_name]=group_password
         print("Successful creation of group : " +str(group_name)+" : "+str(grp_name_and_pass[group_name] ))
-
+        return True
 
 def clients_task(client_name, conn, addr):
     while True:
@@ -44,10 +49,12 @@ while True:
     print(group_name,group_password)
     usr_name=conn.recv(1000)
     print(usr_name)
-    validate(group_name,group_password)
+    if validate(group_name,group_password):
 
-    online_users.append(usr_name)
+        online_users.append(usr_name)
 
-    clients[usr_name.decode()] = conn
-    t = Thread(target=clients_task, args=(usr_name.decode(), conn, addr))
-    t.start()
+        clients[usr_name.decode()] = conn
+        t = Thread(target=clients_task, args=(usr_name.decode(), conn, addr))
+        t.start()
+    else:
+        print("Boobs")

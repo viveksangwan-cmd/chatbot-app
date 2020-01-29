@@ -20,6 +20,7 @@ def validate(group_name,group_password):
                 print(i,end="  ")
         else:
             print("Wrong password")
+            conn.close()
     else:
         grp_name_and_pass[group_name]=group_password
         print("Successful creation of group : " +str(group_name)+" : "+str(grp_name_and_pass[group_name] ))

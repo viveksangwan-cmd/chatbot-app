@@ -28,7 +28,6 @@ def validate(group_name,group_password):
         else:
             wrong_password="Wrong Password"
             conn.sendall((wrong_password.encode()))
-            time.sleep(3)
             conn.close()
             return False
     else:

@@ -1,5 +1,4 @@
 import socket
-import time
 from threading import Thread
 clients_groups={}
 clients = {}
@@ -15,6 +14,7 @@ port_number = 8000
 ss.bind(("", port_number))
 ss.listen()
 print("Server is waiting for client.")
+
 
 def validate(group_name,group_password):
     if group_name in list(grp_name_and_pass.keys()):

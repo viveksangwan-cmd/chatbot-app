@@ -1,3 +1,4 @@
+import os
 import sys
 import socket
 from threading import Thread
@@ -5,6 +6,10 @@ from threading import Thread
 cs = socket.socket()
 port_number = 8000
 cs.connect(("localhost", port_number))
+
+os.system('clear')
+
+print("Developer :- Vivek Sangwan / Pratham Kishore")
 
 group_name=input("Enter Group name : ")
 cs.sendall(group_name.encode())

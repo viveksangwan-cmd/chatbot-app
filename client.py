@@ -1,17 +1,25 @@
+import os
+import sys
 import socket
 from threading import Thread
+
 cs = socket.socket()
 port_number = 8000
 cs.connect(("localhost", port_number))
-group_name=input("Group Name:")
+
+os.system('clear')
+
+print("Developer :- Vivek Sangwan / Pratham Kishore")
+
+group_name=input("Enter Group name : ")
 cs.sendall(group_name.encode())
 
-group_password = input("Enter Password.")
+group_password=input("Enter Password : ")
 cs.sendall(group_password.encode())
 
-
-usr_name = input("Username.")
+usr_name = input("Username :")
 cs.sendall(usr_name.encode())
+
 
 def receive_data():
     while True:
